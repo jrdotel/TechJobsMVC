@@ -37,11 +37,7 @@ namespace TechJobsMVC.Controllers
                 jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
                 count = jobs.Count;
 
-                if (count < 1)
-                {
-                    ViewBag.search = count + " Jobs with " + ViewBag.columns[searchType] + ": " + searchTerm;
-                }
-                else if (count == 1)
+                if (count == 1)
                 {
                     ViewBag.search = count + " Job with " + ViewBag.columns[searchType] + ": " + searchTerm;
                 }

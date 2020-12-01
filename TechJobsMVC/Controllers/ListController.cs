@@ -40,7 +40,7 @@ namespace TechJobsMVC.Controllers
             return View();
         }
 
-        // list jobs by column and value
+        // list jobs by column and value 
         public IActionResult Jobs(string column, string value)
         {
             List<Job> jobs;
@@ -56,11 +56,8 @@ namespace TechJobsMVC.Controllers
             {
                 jobs = JobData.FindByColumnAndValue(column, value);
                 count = jobs.Count;
-                if (count < 1)
-                {
-                    ViewBag.title = count + " Jobs with " + ColumnChoices[column] + ": " + value;
-                }
-                else if (count == 1)
+
+                if (count == 1)
                 {
                     ViewBag.title = count + " Job with " + ColumnChoices[column] + ": " + value;
                 }
