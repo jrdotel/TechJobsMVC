@@ -44,15 +44,31 @@ namespace TechJobsMVC.Controllers
         public IActionResult Jobs(string column, string value)
         {
             List<Job> jobs;
+
+            int count;
+
             if (column.ToLower().Equals("all"))
             {
                 jobs = JobData.FindAll();
-                ViewBag.title = "All Jobs";
+                count = jobs.Count;
+                ViewBag.title = count + " Jobs:";
             }
             else
             {
                 jobs = JobData.FindByColumnAndValue(column, value);
-                ViewBag.title = "Jobs with " + ColumnChoices[column] + ": " + value;
+                count = jobs.Count;
+                if (count < 1)
+                {
+                    ViewBag.title = count + " Jobs with " + ColumnChoices[column] + ": " + value;
+                }
+                else if (count == 1)
+                {
+                    ViewBag.title = count + " Job with " + ColumnChoices[column] + ": " + value;
+                }
+                else
+                {
+                    ViewBag.title = count + " Jobs with " + ColumnChoices[column] + ": " + value;
+                }
             }
             ViewBag.jobs = jobs;
 

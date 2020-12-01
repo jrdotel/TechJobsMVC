@@ -26,15 +26,31 @@ namespace TechJobsMVC.Controllers
 
             ViewBag.columns = ListController.ColumnChoices;
 
+            int count;
+
             if (string.IsNullOrEmpty(searchTerm))
             {
                 jobs = JobData.FindByColumnAndValue(searchType, "all");
-                ViewBag.title = "All Jobs in Category: " + searchType;
+                count = jobs.Count;
+                ViewBag.search = "Blank search returned. Please enter a Search Term.";
             }
             else
             {
                 jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
-                ViewBag.title = "Jobs with " + ViewBag.columns[searchType] + ": " + searchTerm;
+                count = jobs.Count;
+
+                if (count < 1)
+                {
+                    ViewBag.search = count + " Jobs with " + ViewBag.columns[searchType] + ": " + searchTerm;
+                }
+                else if (count == 1)
+                {
+                    ViewBag.search = count + " Job with " + ViewBag.columns[searchType] + ": " + searchTerm;
+                }
+                else
+                {
+                    ViewBag.search = count + " Jobs with " + ViewBag.columns[searchType] + ": " + searchTerm;
+                }
             }
 
             ViewBag.jobs = jobs;
