@@ -23,9 +23,7 @@ namespace TechJobsMVC.Controllers
         public IActionResult Results(string searchType, string searchTerm)
         {
             List<Job> jobs;
-
             ViewBag.columns = ListController.ColumnChoices;
-
             int count;
 
             if (string.IsNullOrEmpty(searchTerm))

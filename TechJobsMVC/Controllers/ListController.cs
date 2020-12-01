@@ -44,7 +44,6 @@ namespace TechJobsMVC.Controllers
         public IActionResult Jobs(string column, string value)
         {
             List<Job> jobs;
-
             int count;
 
             if (column.ToLower().Equals("all"))
@@ -70,8 +69,8 @@ namespace TechJobsMVC.Controllers
                     ViewBag.title = count + " Jobs with " + ColumnChoices[column] + ": " + value;
                 }
             }
-            ViewBag.jobs = jobs;
 
+            ViewBag.jobs = jobs;
             return View();
         }
 
